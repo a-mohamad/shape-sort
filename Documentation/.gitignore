@@ -1,0 +1,6 @@
+# exclude all tex build files except .pdfs
+/report/*
+!/report/*.pdf
+
+/manual/*
+!/manual/*.pdf
