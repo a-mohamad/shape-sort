@@ -43,10 +43,10 @@ public final class SortingTechnique {
 
     private static int partition(Object[] shapes, int left, int right, Shape pivot) {
         while (left <= right) {
-            while (((Shape) shapes[left]).area() < pivot.area())
+            while (((Shape) shapes[left]).compareTo(pivot) < 0)
                 left++;
 
-            while (((Shape) shapes[right]).area() > pivot.area())
+            while (((Shape) shapes[right]).compareTo(pivot) > 0)
                 right--;
 
             if (left <= right) {
