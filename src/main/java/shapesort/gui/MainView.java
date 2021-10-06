@@ -3,6 +3,7 @@ package shapesort.gui;
 import shapesort.model.Rectangle;
 import shapesort.model.Shape;
 import shapesort.model.*;
+import shapesort.util.ColorUtility;
 import shapesort.util.SwingUtility;
 
 import javax.swing.*;
@@ -97,7 +98,7 @@ public class MainView extends AbstractView {
     public void reloadShapes(List<Shape> shapes) {
         final int choices = ShapeType.values().length;
         final Point lastPoint = new Point();
-        final int MIN = 50, MAX = 200;
+        final int MIN = 40, MAX = 255;
         shapes.clear();
 
         for (int i = 0; i < NUM_SHAPES; i++) {
@@ -106,8 +107,7 @@ public class MainView extends AbstractView {
 
             if (shape.getClass() == Rectangle.class) {
                 Rectangle r = (Rectangle) shape;
-                r.setColor(new Color(rand.nextInt(MAX - MIN) + MIN, rand.nextInt(MAX - MIN) + MIN,
-                        rand.nextInt(MAX - MIN) + MIN));
+                r.setColor(ColorUtility.getRandomColor(MIN, MAX));
 
                 int width = BASE_SIZE + (int) ((rand.nextInt(3) - 1) * AREA_VARIATION);
                 int height = BASE_SIZE + (int) ((rand.nextInt(3) - 1) * AREA_VARIATION);
@@ -121,11 +121,9 @@ public class MainView extends AbstractView {
                 shapes.add(r);
             } else if (shape.getClass() == Square.class) {
                 Square s = (Square) shape;
-                s.setColor(new Color(rand.nextInt(MAX - MIN) + MIN, rand.nextInt(MAX - MIN) + MIN,
-                        rand.nextInt(MAX - MIN) + MIN));
+                s.setColor(ColorUtility.getRandomColor(MIN, MAX));
 
                 int width = BASE_SIZE + (int) ((rand.nextInt(3) - 1) * AREA_VARIATION);
-
                 s.setWidth(width);
                 lastPoint.translate(SHAPE_MARGIN_X, SHAPE_MARGIN_X);
                 s.setPos(lastPoint);
@@ -134,11 +132,9 @@ public class MainView extends AbstractView {
                 shapes.add(s);
             } else if (shape.getClass() == Circle.class) {
                 Circle c = (Circle) shape;
-                c.setColor(new Color(rand.nextInt(MAX - MIN) + MIN, rand.nextInt(MAX - MIN) + MIN,
-                        rand.nextInt(MAX - MIN) + MIN));
+                c.setColor(ColorUtility.getRandomColor(MIN, MAX));
 
                 int radius = (BASE_SIZE + (int) ((rand.nextInt(3) - 1) * AREA_VARIATION)) / 2;
-
                 c.setRadius(radius);
                 lastPoint.translate(SHAPE_MARGIN_X, SHAPE_MARGIN_X);
                 c.setPos(lastPoint);
