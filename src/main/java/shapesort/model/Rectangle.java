@@ -39,7 +39,7 @@ public class Rectangle extends Shape {
         this.width = width;
     }
 
-    public void setHeight(int height) {
+    public final void setHeight(int height) {
         this.height = height;
     }
 
