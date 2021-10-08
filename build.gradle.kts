@@ -2,6 +2,7 @@ plugins {
     java
     `java-library`
     application
+    jacoco
 }
 
 repositories {
@@ -38,6 +39,8 @@ application {
     mainClass.set("shapesort.Main")
 }
 
+
+
 tasks.register<Jar>("uberJar") {
     archiveClassifier.set("uber")
 
@@ -47,4 +50,25 @@ tasks.register<Jar>("uberJar") {
     from({
         configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
     })
+}
+
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(false)
+        csv.required.set(false)
+        html.outputLocation.set(layout.buildDirectory.dir("reports/jacoco"))
+    }
 }

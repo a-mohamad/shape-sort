@@ -4,14 +4,26 @@
 package shapesort;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import shapesort.model.Circle;
+import shapesort.model.Shape;
+import shapesort.model.Square;
 
 public class ShapeTest {
     @Test
-    @Disabled("Not implemented yet")
-    void testShapeComparator() {
+    void testShapeCompareTo() {
+        // simple tests for compareTo() of shapes
+        Shape s1 = new Circle(10);
+        Shape s2 = new Circle(10);
+        assertEquals(0, s1.compareTo(s2));
+
+        Shape s3 = new Circle(10);
+        Shape s4 = new Circle(20);
+        assertTrue(s3.compareTo(s4) < 0);
+        assertTrue(s4.compareTo(s3) > 0);
     }
 
     @Test
