@@ -59,4 +59,10 @@ public class Rectangle extends Shape {
     public Dimension getBoundingDimension() {
         return new Dimension(width, height);
     }
+
+    @Override
+    public void setBoundingDimension(Dimension dimension) {
+        setWidth(dimension.width);
+        setHeight(dimension.height);
+    }
 }

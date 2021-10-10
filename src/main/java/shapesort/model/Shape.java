@@ -19,6 +19,8 @@ public abstract class Shape implements Comparable<Shape> {
 
     public abstract Dimension getBoundingDimension();
 
+    public abstract void setBoundingDimension(Dimension dimension);
+
     public Color getColor() {
         return color;
     }

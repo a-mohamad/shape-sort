@@ -50,4 +50,10 @@ public class Circle extends Shape {
     public Dimension getBoundingDimension() {
         return new Dimension(radius * 2, radius * 2);
     }
+
+    @Override
+    public void setBoundingDimension(Dimension dimension) {
+        assert dimension.width == dimension.height;
+        setRadius(dimension.width / 2);
+    }
 }
