@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * A static utility class with methods to sort a collection of shapes by deafult
+ * A static utility class with methods to sort a collection of shapes, by default,
  * using their surface area. A custom comparator can be used to sort as an
  * alternative.
  *
@@ -20,7 +20,7 @@ public final class SortingTechnique {
         sort(shapes, null);
     }
 
-    private static void sort(List<Shape> shapes, Comparator<? super Shape> c) {
+    public static void sort(List<Shape> shapes, Comparator<? super Shape> c) {
         Object[] a = shapes.toArray();
         quickSort(a, 0, a.length - 1);
         ListIterator<Shape> i = shapes.listIterator();
@@ -38,7 +38,6 @@ public final class SortingTechnique {
         int index = partition(shapes, left, right, pivot);
         quickSort(shapes, left, index - 1);
         quickSort(shapes, index, right);
-
     }
 
     private static int partition(Object[] shapes, int left, int right, Shape pivot) {
