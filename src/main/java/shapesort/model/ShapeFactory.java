@@ -22,7 +22,7 @@ public final class ShapeFactory {
             case RECTANGLE -> new Rectangle();
             case SQUARE -> new Square();
             case CIRCLE -> new Circle();
-            default -> throw new IllegalArgumentException("Not a valid shape.");
+            default -> throw new IllegalArgumentException("Shape not implemented");
         };
     }
 
@@ -31,7 +31,7 @@ public final class ShapeFactory {
             case RECTANGLE -> new Rectangle(point);
             case SQUARE -> new Square(point);
             case CIRCLE -> new Circle(point);
-            default -> throw new IllegalArgumentException("Not a valid shape.");
+            default -> throw new IllegalArgumentException("Shape not implemented");
         };
     }
 
@@ -40,25 +40,29 @@ public final class ShapeFactory {
             case RECTANGLE -> new Rectangle(new Point(x, y));
             case SQUARE -> new Square();
             case CIRCLE -> new Circle(new Point(x, y));
-            default -> throw new IllegalArgumentException("Not a valid shape.");
+            default -> throw new IllegalArgumentException("Shape not implemented");
         };
     }
 
     public Shape create() {
         Random rand = new Random();
-        int MAX_SIZE = 1000;
+        int DEFAULT_MAX = 1000;
+        int width = rand.nextInt(DEFAULT_MAX);
+        int height = rand.nextInt(DEFAULT_MAX);
+
+        return create(width, height);
+    }
+
+    public Shape create(int width, int height) {
+        Random rand = new Random();
         int shapeIndex = rand.nextInt(ShapeType.values().length);
         ShapeType shapeType = ShapeType.values()[shapeIndex];
         Shape shape = shapeFactory.create(shapeType);
-
-        int width = rand.nextInt(MAX_SIZE);
-        int height = rand.nextInt(MAX_SIZE);
-
         shape.setColor(ColorUtility.getRandomColor());
         shape.setBoundingDimension(switch (shapeType) {
             case RECTANGLE -> new Dimension(width, height);
             case SQUARE, CIRCLE -> new Dimension(width, width);
-            default -> throw new IllegalArgumentException("Not a valid shape.");
+            default -> throw new IllegalArgumentException("Shape not implemented");
         });
         return shape;
     }

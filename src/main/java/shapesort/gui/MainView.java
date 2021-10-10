@@ -25,7 +25,6 @@ public class MainView extends AbstractView {
     /* shape properties constants */
     private final Random rand = new Random();
     private final int SHAPE_PADDING = 15;
-    private final int SHAPE_MARGIN_X = 10;
     private final double AREA_VARIATION = 20;
     private final double DIV_FACTOR = 1.2;
     private final int BASE_SIZE = (int) (CANVAS_HEIGHT / (NUM_SHAPES * DIV_FACTOR) - SHAPE_PADDING - AREA_VARIATION);
@@ -96,52 +95,19 @@ public class MainView extends AbstractView {
 
     @Override
     public void reloadShapes(List<Shape> shapes) {
-        final int choices = ShapeType.values().length;
-        final Point lastPoint = new Point();
-        final int MIN = 40, MAX = 255;
         shapes.clear();
+        final Point lastPoint = new Point();
 
         for (int i = 0; i < NUM_SHAPES; i++) {
-            int shapeIndex = rand.nextInt(choices);
-            Shape shape = shapeFactory.create(ShapeType.values()[shapeIndex]);
+            int width = BASE_SIZE + (int) ((rand.nextInt(3) - 1) * AREA_VARIATION);
+            int height = BASE_SIZE + (int) ((rand.nextInt(3) - 1) * AREA_VARIATION);
+            Shape shape = shapeFactory.create(width, height);
 
-            if (shape.getClass() == Rectangle.class) {
-                Rectangle r = (Rectangle) shape;
-                r.setColor(ColorUtility.getRandomColor(MIN, MAX));
-
-                int width = BASE_SIZE + (int) ((rand.nextInt(3) - 1) * AREA_VARIATION);
-                int height = BASE_SIZE + (int) ((rand.nextInt(3) - 1) * AREA_VARIATION);
-
-                r.setWidth(width);
-                r.setHeight(height);
-                lastPoint.translate(SHAPE_MARGIN_X, SHAPE_MARGIN_X);
-                r.setPos(lastPoint);
-                lastPoint.setLocation(lastPoint.getX() + width, lastPoint.getY() + height);
-                lastPoint.translate(SHAPE_PADDING, SHAPE_PADDING);
-                shapes.add(r);
-            } else if (shape.getClass() == Square.class) {
-                Square s = (Square) shape;
-                s.setColor(ColorUtility.getRandomColor(MIN, MAX));
-
-                int width = BASE_SIZE + (int) ((rand.nextInt(3) - 1) * AREA_VARIATION);
-                s.setWidth(width);
-                lastPoint.translate(SHAPE_MARGIN_X, SHAPE_MARGIN_X);
-                s.setPos(lastPoint);
-                lastPoint.setLocation(lastPoint.getX() + width, lastPoint.getY() + width);
-                lastPoint.translate(SHAPE_PADDING, SHAPE_PADDING);
-                shapes.add(s);
-            } else if (shape.getClass() == Circle.class) {
-                Circle c = (Circle) shape;
-                c.setColor(ColorUtility.getRandomColor(MIN, MAX));
-
-                int radius = (BASE_SIZE + (int) ((rand.nextInt(3) - 1) * AREA_VARIATION)) / 2;
-                c.setRadius(radius);
-                lastPoint.translate(SHAPE_MARGIN_X, SHAPE_MARGIN_X);
-                c.setPos(lastPoint);
-                lastPoint.setLocation(lastPoint.getX() + radius * 2, lastPoint.getY() + radius * 2);
-                lastPoint.translate(SHAPE_PADDING, SHAPE_PADDING);
-                shapes.add(c);
-            }
+            lastPoint.translate(SHAPE_PADDING, SHAPE_PADDING);
+            shape.setPos(lastPoint);
+            lastPoint.setLocation(lastPoint.x + shape.getBoundingDimension().width,
+                                lastPoint.y + shape.getBoundingDimension().height);
+            shapes.add(shape);
         }
         this.canvas.repaint();
     }
