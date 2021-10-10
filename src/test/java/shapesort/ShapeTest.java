@@ -3,17 +3,15 @@
  */
 package shapesort;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import shapesort.model.Circle;
 import shapesort.model.Shape;
 import shapesort.model.ShapeFactory;
-import shapesort.model.Square;
 import shapesort.util.SortingTechnique;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ShapeTest {
     ShapeFactory sf = ShapeFactory.getInstance();
@@ -22,12 +20,12 @@ public class ShapeTest {
     void testShapeCompareTo() {
         final int CASES = 1000;
 
-        for (int i = 0 ; i < CASES; i++) {
+        for (int i = 0; i < CASES; i++) {
             Shape s1 = sf.create();
             Shape s2 = sf.create();
             assertTrue(s1.compareTo(s2) < 0 && s1.area() < s2.area() ||
-                                s1.compareTo(s2) > 0 && s1.area() > s2.area() ||
-                                s1.compareTo(s2) == 0 && s1.area() == s2.area());
+                    s1.compareTo(s2) > 0 && s1.area() > s2.area() ||
+                    s1.compareTo(s2) == 0 && s1.area() == s2.area());
         }
     }
 

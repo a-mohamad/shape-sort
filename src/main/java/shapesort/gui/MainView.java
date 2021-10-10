@@ -1,9 +1,7 @@
 package shapesort.gui;
 
-import shapesort.model.Rectangle;
 import shapesort.model.Shape;
-import shapesort.model.*;
-import shapesort.util.ColorUtility;
+import shapesort.model.ShapeFactory;
 import shapesort.util.SwingUtility;
 
 import javax.swing.*;
@@ -106,7 +104,7 @@ public class MainView extends AbstractView {
             lastPoint.translate(SHAPE_PADDING, SHAPE_PADDING);
             shape.setPos(lastPoint);
             lastPoint.setLocation(lastPoint.x + shape.getBoundingDimension().width,
-                                lastPoint.y + shape.getBoundingDimension().height);
+                    lastPoint.y + shape.getBoundingDimension().height);
             shapes.add(shape);
         }
         this.canvas.repaint();
