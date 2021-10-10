@@ -10,12 +10,7 @@ import java.util.List;
  * @author Amir Mohamad
  */
 public interface View {
-    /**
-     * Creates a new {@code View}.
-     *
-     * @param type type of view to create
-     * @return newly created {@code View}.
-     */
+
     static View createView(ViewType type) {
         return type.create();
     }
@@ -25,11 +20,11 @@ public interface View {
     void updateShapePositions(List<Shape> shapes);
 
     /**
-     * A type of {@code View} used by the application.
+     * A type of {@code View} for this application.
      */
     enum ViewType {
         /**
-         * The main application view
+         * The main application view.
          */
         MAIN_VIEW {
             @Override

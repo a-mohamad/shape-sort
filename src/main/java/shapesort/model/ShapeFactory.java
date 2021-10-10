@@ -5,6 +5,11 @@ import shapesort.util.ColorUtility;
 import java.awt.*;
 import java.util.Random;
 
+/**
+ * A singleton factory class which helps create shapes in various different ways.
+ *
+ * @author Amir Mohamad
+ */
 public final class ShapeFactory {
     private static ShapeFactory shapeFactory;
 

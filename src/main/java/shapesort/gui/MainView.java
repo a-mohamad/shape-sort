@@ -20,6 +20,8 @@ public class MainView extends AbstractView {
     private static final double ACTION_PANEL_RATIO = 0.08;
     private static final int ACTION_PANEL_HEIGHT = (int) (HEIGHT * ACTION_PANEL_RATIO);
     private static final int CANVAS_HEIGHT = (int) (HEIGHT * (1.0 - ACTION_PANEL_RATIO));
+    private static final int BUTTON_WIDTH = 120;
+    private static final int BUTTON_HEIGHT = 40;
     /* shape properties constants */
     private final Random rand = new Random();
     private final int SHAPE_PADDING = 15;
@@ -53,8 +55,8 @@ public class MainView extends AbstractView {
         actionPanel.setPreferredSize(new Dimension(WIDTH, ACTION_PANEL_HEIGHT));
         SwingUtility.setTransparent(actionPanel);
 
-        loadShapesBtn.setPreferredSize(new Dimension(120, 40));
-        sortShapesBtn.setPreferredSize(new Dimension(120, 40));
+        loadShapesBtn.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+        sortShapesBtn.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
         loadShapesBtn.addActionListener(e -> {
             this.presenter.reloadShapes(shapes);
             this.isSorted = false;
@@ -79,8 +81,10 @@ public class MainView extends AbstractView {
         SwingUtility.setTransparent(root);
 
         this.frame.add(root);
+        this.frame.setTitle("Display Shapes");
         this.frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.frame.setSize(WIDTH, HEIGHT);
+        this.frame.setMinimumSize(new Dimension(BUTTON_WIDTH * 3, 0));
         this.frame.setResizable(true);
         this.frame.pack();
         this.frame.toFront();

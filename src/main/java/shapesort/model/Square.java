@@ -2,6 +2,11 @@ package shapesort.model;
 
 import java.awt.*;
 
+/**
+ * An abstraction of a rectangle using the fact that a square is the subset of a rectangle.
+ *
+ * @author Amir Mohamad
+ */
 public class Square extends Rectangle {
 
     public Square() {

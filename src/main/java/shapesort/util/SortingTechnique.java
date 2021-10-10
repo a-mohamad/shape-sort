@@ -49,7 +49,7 @@ public final class SortingTechnique {
                 right--;
 
             if (left <= right) {
-                if (((Shape) shapes[right]).area() != ((Shape) shapes[left]).area())
+                if (((Shape) shapes[right]).compareTo((Shape) shapes[left]) != 0)
                     swap(left, right, shapes);
                 left++;
                 right--;

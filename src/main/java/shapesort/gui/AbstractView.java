@@ -4,6 +4,11 @@ import com.formdev.flatlaf.FlatDarkLaf;
 
 import javax.swing.*;
 
+/**
+ * An abstraction of a generic view.
+ *
+ * @author Amir Mohamad
+ */
 public abstract class AbstractView implements View {
 
     protected final JFrame frame;
@@ -11,7 +16,7 @@ public abstract class AbstractView implements View {
 
     public AbstractView() {
         AbstractView.enableLookAndFeel();
-        this.frame = new JFrame("Display Shapes");
+        this.frame = new JFrame();
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.presenter = new Presenter(this);
     }

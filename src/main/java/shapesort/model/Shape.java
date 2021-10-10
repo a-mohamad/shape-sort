@@ -3,9 +3,8 @@ package shapesort.model;
 import java.awt.*;
 
 /**
- * A static utility class with methods to sort a collection of shapes by deafult
- * using their surface area. A custom comparator can be used to sort as an
- * alternative.
+ * An abstraction of a shape that implements Comparable. By default, shapes are compared by
+ * using area.
  *
  * @author Amir Mohamad
  */
