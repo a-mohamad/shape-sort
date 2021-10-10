@@ -3,19 +3,23 @@
  */
 package shapesort;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import shapesort.model.Circle;
 import shapesort.model.Shape;
+import shapesort.model.ShapeFactory;
 import shapesort.model.Square;
+import shapesort.util.SortingTechnique;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ShapeTest {
+    ShapeFactory sf = ShapeFactory.getInstance();
+
     @Test
     void testShapeCompareTo() {
-        // simple tests for compareTo() of shapes
         Shape s1 = new Circle(10);
         Shape s2 = new Circle(10);
         assertEquals(0, s1.compareTo(s2));
@@ -27,7 +31,16 @@ public class ShapeTest {
     }
 
     @Test
-    @Disabled("Not implemented yet")
     void testShapeSort() {
+        final int NUM_SHAPES = 100;
+        final ArrayList<Shape> shapes = new ArrayList<>();
+
+        for (int i = 0; i < NUM_SHAPES; i++)
+            shapes.add(sf.create());
+
+        SortingTechnique.sort(shapes);
+
+        for (int i = 0; i < shapes.size() - 1; ++i)
+            assertFalse(shapes.get(i).compareTo(shapes.get(i + 1)) > 0);
     }
 }
