@@ -20,19 +20,20 @@ public class ShapeTest {
 
     @Test
     void testShapeCompareTo() {
-        Shape s1 = new Circle(10);
-        Shape s2 = new Circle(10);
-        assertEquals(0, s1.compareTo(s2));
+        final int CASES = 1000;
 
-        Shape s3 = new Circle(10);
-        Shape s4 = new Circle(20);
-        assertTrue(s3.compareTo(s4) < 0);
-        assertTrue(s4.compareTo(s3) > 0);
+        for (int i = 0 ; i < CASES; i++) {
+            Shape s1 = sf.create();
+            Shape s2 = sf.create();
+            assertTrue(s1.compareTo(s2) < 0 && s1.area() < s2.area() ||
+                                s1.compareTo(s2) > 0 && s1.area() > s2.area() ||
+                                s1.compareTo(s2) == 0 && s1.area() == s2.area());
+        }
     }
 
     @Test
     void testShapeSort() {
-        final int NUM_SHAPES = 100;
+        final int NUM_SHAPES = 1000;
         final ArrayList<Shape> shapes = new ArrayList<>();
 
         for (int i = 0; i < NUM_SHAPES; i++)
